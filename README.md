@@ -1,6 +1,8 @@
 # isbn-barcode-ja-latex
 ISBN barcode Template for "Japan Book Code" with Latex.
 
+- 日本図書コード（書籍 JAN コード）に対応した ISBN バーコードを Latex により PDF 上に生成します。
+
 # 概要
 
 ### 日本図書コード
@@ -14,7 +16,7 @@ ISBN barcode Template for "Japan Book Code" with Latex.
 
 # 作業環境
 - TexLive バージョン (2021.20220204-1) / Debian パッケージ
-- Linux（ Debian ）
+- LuaLatex（ Linux: Debian ）
 
 # USAGE
 
