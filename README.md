@@ -20,5 +20,5 @@ ISBN barcode Template for "Japan Book Code" with Latex.
 
 # USAGE
 
-1. 詳しくは **isbn-barcode-ja-latex.pdf** の作業手順に従って下さい。 
-1. cron 或いは ZIP 解凍後、**isbn-barcode-ja-latex.tex** を開くと表示例の全てのソースを利用出来ます。
+- 詳しくは **isbn-barcode-ja-latex.pdf** の作業手順に従って下さい。 
+- cron 或いは ZIP 解凍後、**isbn-barcode-ja-latex.tex** を開くと表示例の全てのソースを利用出来ます。
