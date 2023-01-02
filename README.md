@@ -17,7 +17,7 @@ ISBN barcode Template for "Japan Book Code" with Latex.
 # 作業環境
 - TexLive バージョン (2021.20220204-1) / Debian パッケージ
 - LuaLatex（ Linux: Debian ）  
-　⇒ Debian での作業手順は [LuaLaTeX & BibLaTeX with Debian：環境構築と作業手順の解説](https://github.com/ru-museum/isbn-barcode-ja-latex/blob/main/latex-with-debian.pdf) を参照して下さい。
+⇒ Debian での作業手順は [LuaLaTeX & BibLaTeX with Debian：環境構築と作業手順の解説](https://github.com/ru-museum/isbn-barcode-ja-latex/blob/main/latex-with-debian.pdf) を参照して下さい。
 
 # USAGE
 
