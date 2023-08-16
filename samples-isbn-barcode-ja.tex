@@ -1,0 +1,247 @@
+\documentclass[a5j,tombo,10pt,titlepage,pdfusetitle]{ltjsbook}
+
+% LINK
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{pdfborder={0 0 0.5}}
+
+% 色の使用
+\usepackage{xcolor}
+\definecolor{mylinkcolor}{RGB}{3, 112, 145} %{65, 145, 3} % 色定義
+\definecolor{linkcol}{RGB}{2, 106, 77} %{65, 145, 3} % 色定義
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=linkcol,
+    urlcolor=mylinkcolor % 定義された色
+}
+% HTML(#800000)色定義
+\def\colH#1{\color[HTML]{#1}}
+
+% 画像挿入
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{svg} 
+
+\usepackage{pst-barcode} 
+
+% FONT
+\usepackage{fontspec}
+% FONT-WEIGHT 調整の指定
+% \usepackage[haranoaji,deluxe,nfssonly,jis2004]{luatexja-preset}
+\usepackage[haranoaji,deluxe]{luatexja-preset}
+
+% MACRO
+\def\ocrb#1{\fontspec{ocrb7} {#1}}
+\def\ocrbsmall#1{\fontspec{ocrb7} \fontsize{7}{7}{#1}\selectfont }
+
+\usepackage{framed}
+
+% FONT-SIZE
+\def\fs#1#2{\fontsize{#1}{#2}\selectfont }
+\def\bf#1{\textbf{#1}}
+
+\title{{\Huge 書籍JANコード}\\ \lbrack サンプル集 \rbrack\vspace{60mm}}
+
+
+
+\author{\href{https://github.com/ru-museum?tab=repositories}{ru\_museum}: GitHub)}
+\date{\today}
+
+\begin{document}
+\thispagestyle{empty}
+
+\maketitle
+
+\setcounter{tocdepth}{2}
+\clearpage
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+\thispagestyle{empty}
+
+\section{EXAMPLES}   
+\begin{itemize}
+  \item 以下掲載のサンプルは、実際の書籍の表示を再現しています。
+\end{itemize}
+
+\subsection*{サンプル書籍}   
+
+
+% \begin{table}[H]\fs{10}{8}
+% \begin{tabular}{llll}
+% \textbf{書名} & \textbf{著者} & \textbf{出版社} & \textbf{出版年}\\ 
+% \hline\vspace{-1.6mm}\\
+% 再発見 日本の哲学 丸山眞男─理念への信 & 遠山敦 & 講談社 & 2010\\ 
+% 戦争と平和 ４ & トルストイ/藤沼 貴 訳 & 岩波文庫 & 2006\\ 
+% 夢見る権利 ロシア・アヴァンギャルド再考 & 桑野隆 & 東京大学出版会 & 1996\\ 
+% 岩波講座 言語の科学 ９ 言語情報処理 & 長尾 真 他著 & 岩波書店 & 1998\\ 
+% やさしいＣ & 高橋麻奈 & SoftBank & 2012\\ 
+% \end{tabular}
+% \end{table}
+
+    
+\begin{enumerate}\fs{9}{14}
+  \item \textbf{再発見 日本の哲学 丸山眞男─理念への信}：遠山敦 著、講談社、2010
+  \item \textbf{戦争と平和 ４}：トルストイ 著 / 藤沼 貴 訳、岩波文庫、2006 
+  \item \textbf{夢見る権利 ロシア・アヴァンギャルド再考}：桑野隆、東京大学出版会、1996 
+  \item \textbf{岩波講座 言語の科学 ９ 言語情報処理}：長尾 真 他著、岩波書店、1998 
+  \item \textbf{やさしいＣ}：高橋麻奈 著、SoftBank、2012 
+\end{enumerate}
+
+
+\newpage
+\thispagestyle{empty}
+
+\begin{picture}(0,0)(0,-10)
+\put(0,120){EXAMPLE: 1}   
+\end{picture}  
+
+\begin{picture}(0,0)(0,20)
+
+\put(-33,76){\psbarcode{9784062787611}{height=0.45 width=1.28}{ean13}}  
+\put(-34,66){{\fontspec{ocrb7}9784062787611}}  
+\put(-33,13){\psbarcode{1920310014001}{height=0.45 width=1.28}{ean13}}  
+\put(-34,3){{\fontspec{ocrb7}1920310014001}}  
+
+\put(92,100){\fontspec{Inter-Medium}ISBN978-4-06-278761-1}  
+\put(92,86){\fontspec{Inter-Medium}C0310 \gtfamily{\bfseries￥}1400E (0)}  
+\put(92,36){\fs{11}{13}{\fontspec{NotoSerifJP-Bold}定価：本体 {\fontspec{GoudyOldStyleSSiSmallCaps}1400}円(税別)}}  
+\put(92,16){\fs{11}{12}{\fontspec{NotoSerifJP-Bold}講談社}}  
+\end{picture}  
+
+\vspace{100mm}
+
+\begin{framed}
+{\fs{14}{10} \noindent\bf{再発見 日本の哲学 丸山眞男─理念への信}}\\
+
+{\fs{12}{10}
+\noindent 遠山 敦 著}\vspace{0mm}\\
+
+\noindent 講談社 2010年
+\end{framed}
+
+
+
+\newpage
+\thispagestyle{empty}
+
+\begin{picture}(0,0)(0,-10)
+\put(0,120){EXAMPLE: 2}   
+\end{picture}  
+
+\begin{picture}(0,0)(0,20)
+
+\put(-33,76){\psbarcode{9784003261842}{height=0.45 width=1.28}{ean13}}  
+\put(-34,66){{\fontspec{ocrb7}9784003261842}}  
+\put(-33,13){\psbarcode{1920197009404}{height=0.45 width=1.28}{ean13}}  
+\put(-34,3){{\fontspec{ocrb7}1920197009404}}  
+
+\put(92,100){\fontspec{ocrb7}ISBN4-00-326184-4}  
+\put(92,78){\fontspec{ocrb7}C0197 \gtfamily{\bfseries￥}940E}  
+\put(92,46){\fs{12}{12}{\gtfamily{\mdseries 定価(本体 {\fontspec{Inter-Medium}940}円＋税)}}}
+\end{picture}\\  
+
+\vspace{80mm}
+
+\begin{framed}
+{\fs{14}{10} \noindent\bf{戦争と平和 ４}}\\
+
+{\fs{12}{10}
+\noindent トルストイ 作\\ 
+ 藤沼　貴 訳}\vspace{0mm}\\
+
+\noindent 赤 618-4\\
+岩波文庫
+\end{framed}
+
+\newpage
+\thispagestyle{empty}
+
+\begin{picture}(0,0)(0,-10)
+\put(0,120){EXAMPLE: 3}   
+\end{picture}  
+
+\begin{picture}(0,0)(0,20)
+
+\put(238,76){\psbarcode{9784130130196}{height=0.45 width=1.28}{ean13}}  
+\put(237,66){{\fontspec{ocrb7}9784130130196}}  
+\put(238,13){\psbarcode{1911010029877}{height=0.45 width=1.28}{ean13}}  
+\put(237,3){{\fontspec{ocrb7}1911010029877}}  
+
+\put(87,100){\fontspec{ocrb7}ISBN4-13-013019-6}  
+\put(87,78){\fontspec{ocrb7}C1010 P2987E}  
+\put(93,30){\fs{12}{12}\gtfamily{\mdseries 定価{\fontspec{Inter-Medium}2987}円}}  
+\put(87.8,16){\fs{12}{12}\gtfamily{\mdseries ({\fontspec{Inter-Medium}本体2900円})}}
+
+%\gtfamily{\mdseries 定価(本体{\fontspec{Inter-Medium}3400}
+
+
+  
+\end{picture}  
+
+\vspace{100mm}
+
+\begin{framed}
+{\fs{14}{10} \noindent\bf{夢見る権利 ロシア・アヴァンギャルド再考}}\\
+{\fs{12}{10}\noindent 桑野 隆 著}\vspace{0mm}\\
+\noindent 東京大学出版会 1996\\
+\end{framed}
+
+\newpage
+\thispagestyle{empty}
+
+\begin{picture}(0,0)(0,-10)
+\put(0,120){EXAMPLE: 4}   
+\end{picture}  
+
+\begin{picture}(0,0)(0,20)
+
+\put(238,76){\psbarcode{9784000108591}{height=0.45 width=1.28}{ean13}}  
+\put(237,66){{\fontspec{ocrb7}9784000108591}}  
+\put(238,13){\psbarcode{1923380034009}{height=0.45 width=1.28}{ean13}}  
+\put(237,3){{\fontspec{ocrb7}1923380034009}}  
+
+\put(87,100){\fontspec{ocrb7}ISBN4-00-010859-X}  
+\put(87,78){\fontspec{ocrb7}C3380 {\gtfamily{\bfseries￥}}3400E}  
+\put(87,30){\fs{12}{12}{\gtfamily{\mdseries 岩波書店}}}  
+\put(87,16){\fs{8.2}{12}{\gtfamily{\mdseries 定価(本体{\fontspec{Inter-Medium}3400}円＋税)}}}  
+\end{picture}  
+
+\vspace{100mm}
+
+\begin{framed}
+{\fs{14}{10} \noindent\bf{岩波講座 言語の科学 ９ 言語情報処理}}\\
+{\fs{12}{10}\noindent 長尾 真 他著}\vspace{0mm}\\
+\noindent 岩波書店 1998\\
+\end{framed}
+
+\newpage
+\thispagestyle{empty}
+
+\begin{picture}(0,0)(0,-10)
+\put(0,120){EXAMPLE: 5}   
+\end{picture}  
+
+\begin{picture}(0,0)(0,20)
+
+\put(238,76){\psbarcode{9784797370980}{height=0.45 width=1.28}{ean13}}  
+\put(237,66){{\fontspec{ocrb7}9784797370980}}  
+\put(238,13){\psbarcode{1920055025003}{height=0.45 width=1.28}{ean13}}  
+\put(237,3){{\fontspec{ocrb7}1920055025003}}  
+
+\put(80,100){\fs{10}{9} \fontspec{Inter-Medium}ISBN4-7973-7098-0}  
+\put(80,84){\fs{10}{9} \fontspec{Inter-Medium}C1010 \gtfamily{\bfseries￥}2500E}  
+\put(82,32){\fs{12}{12}{\gtfamily{\mdseries 定価 \fbox{本体{\fontspec{Inter-Medium}2,500}円}＋税}}}  
+\end{picture}  
+
+\vspace{100mm}
+
+\begin{framed} 
+{\fs{14}{10} \noindent\bf{やさしいＣ}}\\
+{\fs{12}{10}\noindent 高橋 麻奈 著}\vspace{0mm}\\
+\noindent SoftBank 2012\\
+\end{framed}
+
+\end{document}
+

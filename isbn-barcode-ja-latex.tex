@@ -1,4 +1,4 @@
-\documentclass[a5j,tombo,10pt,titlepage,pdfusetitle]{ltjsbook}
+\documentclass[a4paper,10pt,titlepage,pdfusetitle]{ltjsarticle}
 
 % LINK
 \usepackage{url}
@@ -15,6 +15,9 @@
     linkcolor=linkcol,
     urlcolor=mylinkcolor % 定義された色
 }
+% HTML(#800000)色定義
+\def\colH#1{\color[HTML]{#1}}
+
 
 % 画像挿入
 \usepackage{float}
@@ -35,11 +38,17 @@
 
 \usepackage{framed}
 
-% FONT-SIZE
+% DEFINE
 \def\fs#1#2{\fontsize{#1}{#2}\selectfont }
 \def\bf#1{\textbf{#1}}
+\newfontfamily\roboto{roboto}
+% \newfontfamily\fRMono{RobotoMono-Regular}
+\newfontfamily\fRMono{RobotoMono-Light}
 
-\title{日本図書コード用バーコード\\ Template with Lua\LaTeX{}\\ \lbrack\ pst-barcode\ \rbrack}
+\def\bs{\textbackslash}
+
+\title{\Huge 日本語書籍用ISBNバーコードの作成\\ \huge Template with Lua\LaTeX{}\vspace{10mm}\\ \Large\lbrack\ pst-barcode\ \rbrack\vspace{100mm}}
+
 \author{\href{https://github.com/ru-museum?tab=repositories}{ru\_museum}: GitHub)}
 \date{\today}
 
@@ -51,21 +60,22 @@
 \setcounter{tocdepth}{2}
 \clearpage
 \thispagestyle{empty}
-
 \tableofcontents
-
 \newpage
-\thispagestyle{empty}
 
-\section{日本図書コード用バーコードの制作}   
+\section{日本語書籍用ISBNバーコードの制作}   
 
 \begin{itemize}
-  \item 「書籍 JAN コード」には、国際標準 ISBN コード（978-）と日本語書籍で使用されている独自の日本図書コード（192-）とがあります。
-  \item 共にエンコード方式は EAN-13 ですが、日本語書籍で使用されている「日本図書コード」としての ISBN バーコードは、国際標準 ISBN バーコードとはその表記法が異なっています(セパレータの有無等)。\vspace{-6mm}\\
 
+  \item 日本で出版される書籍には、一般的に「日本図書コード\footnote{ISBNコード（国際標準図書番号）に分類と価格表記を付加した日本独自のもの。\\例：ISBN978-4-06-278761-1 C2055 ￥3000E}」と「書籍JANコード\footnote{日本図書コード（分類番号及び価格を含めたもの）を組み入れた国内での出版流通に利用されるもの。}」とが表記されることとなっています。
+  
+  \item 「書籍 JAN コード」には、国際標準図書番号であるISBNコード（978-）と日本語書籍で使用されている独自の日本図書コード（192-）とがあります。
+  
+  \item 共にエンコード方式は {\colH{800000}EAN-13}\footnote{EAN（European Article Number)。国際標準となっているバーコード変換様式。}ですが、日本語書籍で使用されている「日本図書コード」としての ISBN バーコードは、国際標準 ISBN バーコードとはその表記方式が異なっています\footnote{セパレータの有無等。}。\vspace{-4mm}\\
+
+\hspace{11mm}書籍JANコード(2段組) \hspace{10mm}国際標準 ISBN コード\vspace{-4mm}
 \begin{figure}[h]  
 \setlength{\unitlength}{0.14in} 
-\hspace{10mm}日本図書コード(2段組) \hspace{10mm}国際標準 ISBN コード
 \centering                      
 \begin{picture}(62,15) 
 \put(6,11){\psbarcode{9784003261842}{height=0.45 width=1.28}{ean13}}  
@@ -76,99 +86,141 @@
 \put(18,7.7){ \includegraphics[width=4cm,angle=0]{./images/ean-13-sample.png}} 
 \end{picture}  
 \end{figure}\vspace{-20mm}\relax  
-  \item 現状{}\LaTeX{} での日本図書コード ISBN バーコード作成は用意されていませんので、TexLive 付属の pst-barcode をカスタマイズし利用します。\\  
-  {\fs{8}{8}/usr/share/texlive/texmf-dist/tex/latex/pst-barcode(linux: Debian)}
+  \item \LaTeX{} では日本図書コードに用いるISBNバーコードを作成出来るパッケージは用意されていません。\\
+  ここではTexLive付属\footnote{/usr/share/texlive/texmf-dist/tex/latex/pst-barcode(linux: Debian)}の \textbf{\colH{800000}pst-barcode} をカスタマイズし利用します。\vspace{-1em}    
 \end{itemize}
 
-\newpage
 \section{表記・印刷の規格} 
 
 \begin{itemize}
-  \item 書籍 JAN コードの表記・印刷位置は厳密に定められています。\\
-{\fs{6}{6}【出典】\href{https://isbn.jpo.or.jp/doc/08.pdf}{ＩＳＢＮコード/日本図書コード/書籍ＪＡＮコード利用の手引き ２０１０年版 ホームページ版}\vspace{-2mm}\\
-\hspace{7mm}(日本図書コード管理センター)}
+  \item 書籍 JAN コードの表記・印刷位置は厳密に定められています。\footnote{\href{https://isbn.jpo.or.jp/doc/08.pdf}{「ＩＳＢＮコード/日本図書コード/書籍ＪＡＮコード利用の手引き」}\\
+\hspace{2em}(２０１０年版 : 日本図書コード管理センター)}\vspace{-6mm}
 
 \end{itemize}
 
-\subsection{サイズ} 
+\subsection{サイズ}\vspace{-8mm} 
 
 {\begin{figure}[H]
 \centering
-\includegraphics[width=5cm,angle=0]{./images/isbn-layout01.png}
-\caption{サイズ規格} 
+\includegraphics[width=8cm,angle=0]{./images/isbn-layout01.png}
+\caption{サイズ規格}\vspace{-6mm} 
 \end{figure}
 
-\subsection{位置} 
-
+\subsection{表記位置}\vspace{-6mm} 
 \begin{figure}[H]
 \centering
-\includegraphics[width=5cm,angle=0]{./images/isbn-layout02.png}
+\includegraphics[width=8cm,angle=0]{./images/isbn-layout02.png}
 \caption{位置規格(裏表紙左上の場合)} 
 \end{figure}
 
-
-\newpage
-\thispagestyle{empty}
-
 \section{作成手順}   
 
-\begin{enumerate}
-  \item TexLive 付属の pst-barcode を利用します。\\
-  \textbackslash usepackage\{pst-barcode\}
+\subsection{作業環境}
+
+\begin{itemize}
+  \item[] Debian GNU/Linux\\
+  TexLive バージョン (2021.20220204-1) / Debianパッケージ\\
+LuaLatex
+\end{itemize}
+\vspace{-4mm}
+
+\subsection{パッケージpst-barcode}
+\begin{itemize}
+  \item TexLive 付属のパッケージ\textbf{pst-barcode}\footnote{他にも幾らかバーコード用パッケージが存在しますが、「書籍JANコード」として改造の行えるものはありませんでした。}を使用します。\\
+{\fRMono
+\bs usepackage\{{\colH{800000}pst-barcode}\}\\
+ begin\{document\}\\
+\quad\bs psbarcode\{9784003261842\}\{height=0.45 width=1.28\}\{ean13\}
+}\vspace{1mm}
+  \item pst-barcodeでは「書籍JANコード」の2段組の各々を直接表記することは出来ません。\\
+  そこで、pst-barcode側で\textbf{バーコード部分のみを生成しISBN番号部分は非表示}とし、番号部分をlatex側で補完及び調整を行っています。
+\end{itemize}
+\vspace{-4mm}
+
+\subsection{フォントの指定}
+\begin{itemize}
+  \item ISBNコード表記では特別な{\colH{800000}OCRB フォント}\footnote{\roboto{5 OCRB \textbf{フォントの使用}}を参照。}が使われます。\\
+\textbf{記述例：}\fRMono{\{\bs fontspec\{ocrb7\}9784003261842\}}\\
+\textbf{表示例：}\hspace{2mm}{\fontspec{ocrb7}9784003261842}\\
+\end{itemize}
+\vspace{-10mm}
   
-  \item 表示は pst-barcode の仕様上バーコード部分のみに適用し、コード番号部分は非表示とし latex で対応しています。\vspace{-2mm}
-\begin{verbatim}
-{\fontspec{ocrb7}9784003261842}
-\end{verbatim}\vspace{-2mm}
-{\fs{8}{8}⇒ OCRB フォントについては「0.5 OCRB フォントの使用」を参照して下さい。}
+\subsection{サイズ（高さ、幅）の指定}\vspace{-2mm}
 
-  \item サイズ（高さ、幅）の指定：\vspace{-2mm}
-\begin{verbatim}
-\psbarcode{9784003261842}{height=0.45 width=1.28}{ean13}
-\end{verbatim}\vspace{-2mm}
+\begin{itemize}
+  \item height={\colH{800000}n} width={\colH{800000}n} で指定します。\\
+  {\colH{800000}n} は数値、オプションの設定要素間は{\colH{800000}半角空白}で区切られます。\\
+\fRMono{
+\bs psbarcode\{9784003261842\}\{height=0.45\,{\colH{800000}␣}\,width=1.28\}\{ean13\}
+}\vspace{-8mm}
+\end{itemize}
 
-  \item 表示：\vspace{-8mm}\\
-\begin{verbatim}
-{\begin{picture}(0,50)(0,20)
+\newpage
+
+\subsection{表示}\vspace{-2mm}
+\begin{itemize}
+  \item[] 
+{\fRMono
+\{\bs begin\{picture\}(0,50)({\colH{800000}-10},{\colH{800000}20})\\
+\bs psbarcode\{9784003261842\}\{{\colH{800000}height=0.45 width=1.28}\}\{ean13\}\\
+\bs end\{picture\}\}\bs quad{\colH{800000}\bs vspace\{4.6mm\}}\\ 
+{\colH{800000}\bs hspace\{3mm\}}\{\bs fontspec\{ocrb7\}9784003261842\}\\ 
+\bs vspace\{2mm\}\vspace{-10mm}
+}
+
+{\begin{picture}(0,50)(-10,20)
 \psbarcode{9784003261842}{height=0.45 width=1.28}{ean13}
 \end{picture}}\quad\vspace{4.6mm}\\
-{\fontspec{ocrb7}9784003261842}
-\end{verbatim}\vspace{-12mm}
-
-{\begin{picture}(0,50)(0,20)
-\psbarcode{9784003261842}{height=0.45 width=1.28}{ean13}
-\end{picture}}\quad\vspace{4.6mm}\\
-{\fontspec{ocrb7}9784003261842}\\
+\hspace{3mm}{\fontspec{ocrb7}9784003261842}\\
 \vspace{2mm}
-設定値：height=0.45 width=1.28
+\end{itemize}
+\vspace{-12mm}
 
-  \item 各項目の表示位置詳細指定：\\
-     ・ 数値を替え正確な位置を設定します。\\
-     ・ オフセット値はマイナスを位置することもあります。\\
-    \textbackslash begin\{picture\}(160,50)(0,20)\\ 
-      \hspace{4mm}( x 方向の長さ, y 方向の長さ )( x のオフセット, y のオフセット)\\ 
-    \textbackslash put( x, y )\\ 
-    \hspace{4mm}( x のオフセット, y のオフセット)
-    
+\begin{enumerate}
+  \item \bf{各項目の表示位置調整}
+\begin{itemize}
+  \item バーコードとISBN番号との左右上下のズレは、ISBN番号前後の{\colH{800000}\bs vspace}と{\colH{800000}\bs hspace}、或いは{\colH{800000}\bs picture}及び{\colH{800000}\bs put}のオフセット数値を替え正確な位置を調整します。
+  \item オフセット値はマイナス値となることもあります。\\
+    \quad\bs begin\{picture\}( x 方向（横）の長さ, y 方向（縦）の長さ )( x のオフセット, y のオフセット)\\ 
+    \quad\bs put( x のオフセット, y のオフセット)
+  \item x及びyの各移動方向は{\colH{800000}正負逆向き}となっていますので注意して下さい。
+\end{itemize}
 
-  \section*{表示例：}
-{\fs{8}{12}
+
+{\renewcommand{\arraystretch}{1.6}%
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{2}{|c|}{\roboto\bf x のオフセット} & \multicolumn{2}{|c|}{\roboto\bf y のオフセット}\\[5pt]
+\hline
+n > 0 & n < 0 &  n > 0 & n < 0\\[5pt]
+\hline
+\raisebox{-0.8ex}{\includesvg[width=1.2em,angle=0]{./icons/west_black.svg}} & \raisebox{-0.8ex}{\includesvg[width=1.2em,angle=0]{./icons/east_black.svg}} & 
+\raisebox{-0.8ex}{\includesvg[width=1.2em,angle=0]{./icons/south_black.svg}} & \raisebox{-0.8ex}{\includesvg[width=1.2em,angle=0]{./icons/north_black.svg}}\\[5pt]
+\hline
+\end{tabular}
+\caption{xとyのオフセット設定値（n）と移動方向}
+\end{center}
+\end{table}
+}
+ 
+  \item \bf{表示例：}
 \begin{verbatim}
 \begin{picture}(0,0)(-40,120)
 \put(-33,76){\psbarcode{9784003261842}{height=0.45 width=1.28}{ean13}}  
 \put(-34,66){{\fontspec{ocrb7}9784003261842}}  
 \put(-33,13){\psbarcode{1920197009404}{height=0.45 width=1.28}{ean13}}  
 \put(-34,3){{\fontspec{ocrb7}1920197009404}}  
-
 \put(92,100){\fontspec{ocrb7}ISBN4-00-326184-4}  
 \put(92,78){\fontspec{ocrb7}C0197 \gtfamily{\bfseries￥}940E}  
 \put(92,46){\fs{12}{12}{\gtfamily{\mdseries 定価(本体 {\fontspec{Inter-Medium}940}円＋税)}}}
 \end{picture}
 \end{verbatim}
-}
+
+\newpage
 
 \begin{picture}(0,0)(-40,120)
-
 \put(-33,76){\psbarcode{9784003261842}{height=0.45 width=1.28}{ean13}}  
 \put(-34,66){{\fontspec{ocrb7}9784003261842}}  
 \put(-33,13){\psbarcode{1920197009404}{height=0.45 width=1.28}{ean13}}  
@@ -177,22 +229,20 @@
 \put(92,100){\fontspec{ocrb7}ISBN4-00-326184-4}  
 \put(92,78){\fontspec{ocrb7}C0197 \gtfamily{\bfseries￥}940E}  
 \put(92,46){\fs{12}{12}{\gtfamily{\mdseries 定価(本体 {\fontspec{Inter-Medium}940}円＋税)}}}
-\end{picture}\\  
-
+\end{picture}  
 \end{enumerate}
+\vspace{40mm}
 
-\newpage
-\thispagestyle{empty}
 
 \section{FONT-WEIGHT の調整}
 
 \subsection{luatexja-preset で deluxe を設定}　
-\textbackslash usepackage[deluxe]\{luatexja-preset\}
+\fRMono{\textbackslash usepackage[{\colH{800000}deluxe}]\{luatexja-preset\}}
 
 \subsection{フォントの字体指定}\vspace{-10mm}　
 \begin{table}[H]
 \begin{tabular}{llll}
-コマンド & 字体指定 & 表示例 & フォント\\
+\textbf{コマンド} & \textbf{字体指定} & \textbf{表示例} & \textbf{フォント}\\
 \hline
    & 標準 & {\fontspec{HaranoAjiMincho-Regular} 戦争と平和 ４} & HaranoAjiMincho-Regular\\
   \textbackslash textbf & 太字 & \textbf{\fontspec{HaranoAjiMincho-Regular} 戦争と平和 ４} & HaranoAjiMincho-Regular\\
@@ -201,22 +251,28 @@
   \textbackslash bfseries & 太字 & \bfseries{\fontspec{NotoSerifJP-Bold} 戦争と平和 ４} & NotoSerifJP-Bold\\
 \end{tabular}
 \end{table}
+\vspace{-6mm}
 
-\newpage
-
+\begin{itemize}
+  \item その他、TexLive同梱のフォントやシステムにインストールされたもの、独自にインストールしたフォントも利用可能です。
+\end{itemize}
+\vspace{-6mm}
 
 \section{OCRB フォントの使用}
 \begin{itemize}
   \item \href{https://imagers.co.jp/contents/1537/}{OCRB フォントとは}ISOで規格化された国際規格となっています。
   \item \href{https://ctan.org/pkg/ocr-b-outline}{ocr-b-outline – OCR-B fonts in Type 1 and OpenType}(CTAN)\\
 {\fs{9}{9} ※ 従来の .mf フォントは LuaLaTeX では使用出来ませんので OTF を使用します。}
-\end{itemize}\vspace{-6mm}
+\end{itemize}
+\vspace{-6mm}
 
 \subsection{インストール方法}
-\noindent リンク先よりダウンロード・解凍し以下のフォルダに配置します。\\
-/usr/share/texlive/texmf-dist/fonts/opentype/public/\textbf{ocr-b-outline}\vspace{-2mm}\\
-{\fs{8}{6}
+\begin{itemize}
+  \item リンク先よりダウンロード・解凍し以下のフォルダに配置します。\\
+/usr/share/texlive/texmf-dist/fonts/opentype/public/\textbf{\colH{800000}ocr-b-outline}\vspace{-2mm}\\
+{\fs{9}{6}
 \begin{verbatim}
+ocr-b-outline
  ├─ fontforge
  ├─ map
  ├─ opentype
@@ -228,216 +284,49 @@
  │  └── ocrb10.otf
  └─ type1
 \end{verbatim}\vspace{-5mm}
- ※ 必要があれば \$ fc-cache で更新を行って下さい。}\vspace{-2mm}
+}
+\end{itemize}
 
-\subsection{表示例}\vspace{-2mm}
-
-\noindent\textbackslash ocrb ISBN978-4-06-278761-1\\
+\subsection{ISBN番号表示例}\vspace{-2mm}
+\begin{itemize}
+  \item[]
+\fRMono{\{{\colH{800000}\bs ocrb} ISBN978-4-06-278761-1\}}\\
 \quad{\ocrb ISBN978-4-06-278761-1}\\
-\textbackslash ocrbsmall\textbackslash quad ISBN978-4-06-278761-1\\
+\fRMono{\{{\colH{800000}\bs ocrbsmall}\bs quad ISBN978-4-06-278761-1\}}\\
 {\ocrbsmall\quad ISBN978-4-06-278761-1}\vspace{-6mm}\\
 
-\noindent \{\textbackslash fontspec\{ocrb7\}ISBN978-4-06-278761-1\}\\
+\fRMono{\{\bs fontspec\{{\colH{800000}ocrb7}\}ISBN978-4-06-278761-1\}}\\
 \quad{\fontspec{ocrb7}ISBN978-4-06-278761-1}\\
-{\fs{9}{8}
-\noindent \{\textbackslash fontspec\{ocrb9\}ISBN4-00-326184-4 C0197 \textbackslash gtfamily\{\textbackslash bfseries￥\}940E\}}\\
+\fRMono{\{\bs fontspec\{{\colH{800000}ocrb9}\}ISBN4-00-326184-4 C0197 \bs gtfamily\{\bs bfseries￥\}940E\}}\\
 \quad{\fontspec{ocrb9}ISBN4-00-326184-4 C0197 \gtfamily{\bfseries￥}940E}\\
-
-
-\newpage
-\thispagestyle{empty}
-
+\end{itemize}
+\vspace{-6mm}
 
 \subsection{「￥」マーク文字について}\vspace{-2mm}
-{\fs{9}{9}\begin{itemize}
-  \item 「 \gtfamily{\bfseries￥}」マークは CTAN 版には収録されていませんので、「円記号」を太字化することで補完しています。
-  \item 「 \gtfamily{\bfseries￥}」マークを収録している OCRB.TTF フォントには各社提供のものがあります（MS 社 Windows OS 付属等）が、利用に際しては場合により著作権問題が生じることが有りますので注意して下さい。
-
+\begin{itemize}
+  \item 「{\gtfamily\bfseries￥}」マークは CTAN 版には収録されていませんので、{\colH{800000}円記号（￥）を太字化}することで補完しています。
+  \item 「{\gtfamily\bfseries￥}」マークを収録している OCRB.TTF フォントには各社提供のものがあります（MS 社 Windows OS 付属等）が、利用に際しては場合により著作権問題が生じることが有りますので注意して下さい。
 \end{itemize}
-}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=11cm]{./images/ocrb-ttf01.png}
+\includegraphics[width=14cm]{./images/ocrb-ttf01.png}
 \caption{ocrb7(CTAN)} 
 \end{figure}
 \begin{figure}[H]
 \centering
-\includegraphics[width=11cm]{./images/ocrb-ttf-ms2.png}
+\includegraphics[width=14cm]{./images/ocrb-ttf-ms2.png}
 \caption{OCRB.TTF(Microsoft Windows 付属)} 
 \end{figure}
+\vspace{-6mm}
 
-\newpage
-
-\section{EXAMPLES}   
+\section{作成例テンプレート}
 \begin{itemize}
-  \item 以下掲載のサンプルは、実際の書籍の表示を再現しています。
+  \item 作成例テンプレートは同梱の\href{samples-isbn-barcode-ja.pdf}{書籍JANコード サンプル集}samples-isbn-barcode-ja.pdfをご覧下さい。
+  \item 利用の為のサンプルコードは同名の\href{samples-isbn-barcode-ja.tex}{書籍JANコード サンプル集}samples-isbn-barcode-ja.texをご覧下さい。
+  
 \end{itemize}
 
-【サンプル書籍】
-\begin{table}[H]\fs{8}{8}
-\begin{tabular}{llll}
-書名 & 著者 & 出版社 & 出版年\\ 
-\hline
-再発見 日本の哲学 丸山眞男─理念への信 & 遠山敦 & 講談社 & 2010\\ 
-戦争と平和 ４ & トルストイ/藤沼 貴 訳 & 岩波文庫 & 2006\\ 
-夢見る権利 ロシア・アヴァンギャルド再考 & 桑野隆 & 東京大学出版会 & 1996\\ 
-岩波講座 言語の科学 ９ 言語情報処理 & 長尾 真 他著 & 岩波書店 & 1998\\ 
-やさしいＣ & 高橋麻奈 & SoftBank & 2012\\ 
-\end{tabular}
-\end{table}
-
-\newpage
-\thispagestyle{empty}
-
-\begin{picture}(0,0)(0,-10)
-\put(0,120){EXAMPLE: 1}   
-\end{picture}  
-
-\begin{picture}(0,0)(0,20)
-
-\put(-33,76){\psbarcode{9784003261842}{height=0.45 width=1.28}{ean13}}  
-\put(-34,66){{\fontspec{ocrb7}9784003261842}}  
-\put(-33,13){\psbarcode{1920197009404}{height=0.45 width=1.28}{ean13}}  
-\put(-34,3){{\fontspec{ocrb7}1920197009404}}  
-
-\put(92,100){\fontspec{ocrb7}ISBN4-00-326184-4}  
-\put(92,78){\fontspec{ocrb7}C0197 \gtfamily{\bfseries￥}940E}  
-\put(92,46){\fs{12}{12}{\gtfamily{\mdseries 定価(本体 {\fontspec{Inter-Medium}940}円＋税)}}}
-\end{picture}\\  
-
-\vspace{80mm}
-
-\begin{framed}
-{\fs{14}{10} \noindent\bf{戦争と平和 ４}}\\
-
-{\fs{12}{10}
-\noindent トルストイ 作\\ 
- 藤沼　貴 訳}\vspace{0mm}\\
-
-\noindent 赤 618-4\\
-岩波文庫
-\end{framed}
-
-\newpage
-\thispagestyle{empty}
-
-\begin{picture}(0,0)(0,-10)
-\put(0,120){EXAMPLE: 2}   
-\end{picture}  
-
-\begin{picture}(0,0)(0,20)
-
-\put(-33,76){\psbarcode{9784062787611}{height=0.45 width=1.28}{ean13}}  
-\put(-34,66){{\fontspec{ocrb7}9784062787611}}  
-\put(-33,13){\psbarcode{1920310014001}{height=0.45 width=1.28}{ean13}}  
-\put(-34,3){{\fontspec{ocrb7}1920310014001}}  
-
-\put(92,100){\fontspec{Inter-Medium}ISBN978-4-06-278761-1}  
-\put(92,86){\fontspec{Inter-Medium}C0310 \gtfamily{\bfseries￥}1400E (0)}  
-\put(92,36){\fs{11}{13}{\fontspec{NotoSerifJP-Bold}定価：本体 {\fontspec{GoudyOldStyleSSiSmallCaps}1400}円(税別)}}  
-\put(92,16){\fs{11}{12}{\fontspec{NotoSerifJP-Bold}講談社}}  
-\end{picture}  
-
-\vspace{100mm}
-
-\begin{framed}
-{\fs{14}{10} \noindent\bf{再発見 日本の哲学 丸山眞男─理念への信}}\\
-
-{\fs{12}{10}
-\noindent 遠山 敦 著}\vspace{0mm}\\
-
-\noindent 講談社 2010年
-\end{framed}
-
-
-\newpage
-\thispagestyle{empty}
-
-\begin{picture}(0,0)(0,-10)
-\put(0,120){EXAMPLE: 3}   
-\end{picture}  
-
-\begin{picture}(0,0)(0,20)
-
-\put(238,76){\psbarcode{9784130130196}{height=0.45 width=1.28}{ean13}}  
-\put(237,66){{\fontspec{ocrb7}9784130130196}}  
-\put(238,13){\psbarcode{1911010029877}{height=0.45 width=1.28}{ean13}}  
-\put(237,3){{\fontspec{ocrb7}1911010029877}}  
-
-\put(87,100){\fontspec{ocrb7}ISBN4-13-013019-6}  
-\put(87,78){\fontspec{ocrb7}C1010 P2987E}  
-\put(93,30){\fs{12}{12}\gtfamily{\mdseries 定価{\fontspec{Inter-Medium}2987}円}}  
-\put(87.8,16){\fs{12}{12}\gtfamily{\mdseries ({\fontspec{Inter-Medium}本体2900円})}}
-
-%\gtfamily{\mdseries 定価(本体{\fontspec{Inter-Medium}3400}
-
-
-  
-\end{picture}  
-
-\vspace{100mm}
-
-\begin{framed}
-{\fs{14}{10} \noindent\bf{夢見る権利 ロシア・アヴァンギャルド再考}}\\
-{\fs{12}{10}\noindent 桑野 隆 著}\vspace{0mm}\\
-\noindent 東京大学出版会 1996\\
-\end{framed}
-
-\newpage
-\thispagestyle{empty}
-
-\begin{picture}(0,0)(0,-10)
-\put(0,120){EXAMPLE: 4}   
-\end{picture}  
-
-\begin{picture}(0,0)(0,20)
-
-\put(238,76){\psbarcode{9784000108591}{height=0.45 width=1.28}{ean13}}  
-\put(237,66){{\fontspec{ocrb7}9784000108591}}  
-\put(238,13){\psbarcode{1923380034009}{height=0.45 width=1.28}{ean13}}  
-\put(237,3){{\fontspec{ocrb7}1923380034009}}  
-
-\put(87,100){\fontspec{ocrb7}ISBN4-00-010859-X}  
-\put(87,78){\fontspec{ocrb7}C3380 {\gtfamily{\bfseries￥}}3400E}  
-\put(87,30){\fs{12}{12}{\gtfamily{\mdseries 岩波書店}}}  
-\put(87,16){\fs{8.2}{12}{\gtfamily{\mdseries 定価(本体{\fontspec{Inter-Medium}3400}円＋税)}}}  
-\end{picture}  
-
-\vspace{100mm}
-
-\begin{framed}
-{\fs{14}{10} \noindent\bf{岩波講座 言語の科学 ９ 言語情報処理}}\\
-{\fs{12}{10}\noindent 長尾 真 他著}\vspace{0mm}\\
-\noindent 岩波書店 1998\\
-\end{framed}
-
-\newpage
-\thispagestyle{empty}
-
-\begin{picture}(0,0)(0,-10)
-\put(0,120){EXAMPLE: 5}   
-\end{picture}  
-
-\begin{picture}(0,0)(0,20)
-
-\put(238,76){\psbarcode{9784797370980}{height=0.45 width=1.28}{ean13}}  
-\put(237,66){{\fontspec{ocrb7}9784797370980}}  
-\put(238,13){\psbarcode{1920055025003}{height=0.45 width=1.28}{ean13}}  
-\put(237,3){{\fontspec{ocrb7}1920055025003}}  
-
-\put(80,100){\fs{10}{9} \fontspec{Inter-Medium}ISBN4-7973-7098-0}  
-\put(80,84){\fs{10}{9} \fontspec{Inter-Medium}C1010 \gtfamily{\bfseries￥}2500E}  
-\put(82,32){\fs{12}{12}{\gtfamily{\mdseries 定価 \fbox{本体{\fontspec{Inter-Medium}2,500}円}＋税}}}  
-\end{picture}  
-
-\vspace{100mm}
-
-\begin{framed} 
-{\fs{14}{10} \noindent\bf{やさしいＣ}}\\
-{\fs{12}{10}\noindent 高橋 麻奈 著}\vspace{0mm}\\
-\noindent SoftBank 2012\\
-\end{framed}
 
 \end{document}
 
