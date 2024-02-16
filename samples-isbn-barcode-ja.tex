@@ -35,6 +35,10 @@
 \def\ocrb#1{\fontspec{ocrb7} {#1}}
 \def\ocrbsmall#1{\fontspec{ocrb7} \fontsize{7}{7}{#1}\selectfont }
 
+\newfontfamily\fOCRBRegular{OCRB-Regular}
+\usepackage{luatexja-otf} % UNICODE
+
+
 \usepackage{framed}
 
 % FONT-SIZE
@@ -63,6 +67,8 @@
 \section{EXAMPLES}   
 \begin{itemize}
   \item 以下掲載のサンプルは、実際の書籍の表示を再現しています。
+  \item 円マーク文字には、書籍により{\colH{800000}\bfseries￥}と{\colH{800000}\jfontspec{OCRB-Regular} \UTF{00A5}}とが用いられています。\\
+  「{\colH{800000}\jfontspec{OCRB-Regular} \UTF{00A5}}」の記述方法は\href{https://github.com/ru-museum/isbn-barcode-ja-latex/isbn-barcode-ja-latex.pdf}{isbn-barcode-ja-latex.pdf}を参照して下さい。
 \end{itemize}
 
 \subsection*{サンプル書籍}   
@@ -138,7 +144,9 @@
 \put(-34,3){{\fontspec{ocrb7}1920197009404}}  
 
 \put(92,100){\fontspec{ocrb7}ISBN4-00-326184-4}  
-\put(92,78){\fontspec{ocrb7}C0197 \gtfamily{\bfseries￥}940E}  
+
+% \put(92,78){\fontspec{ocrb7}C0197 \gtfamily{\bfseries￥}940E}  
+\put(92,78){\fontspec{ocrb7}C0197 {\jfontspec{OCRB-Regular} \UTF{00A5}}\hspace{-0.6mm}940E}  
 \put(92,46){\fs{12}{12}{\gtfamily{\mdseries 定価(本体 {\fontspec{Inter-Medium}940}円＋税)}}}
 \end{picture}\\  
 
@@ -203,7 +211,7 @@
 \put(237,3){{\fontspec{ocrb7}1923380034009}}  
 
 \put(87,100){\fontspec{ocrb7}ISBN4-00-010859-X}  
-\put(87,78){\fontspec{ocrb7}C3380 {\gtfamily{\bfseries￥}}3400E}  
+\put(87,78){\fontspec{ocrb7}C3380 {\jfontspec{OCRB-Regular} \UTF{00A5}}\hspace{-0.8mm}3400E}  
 \put(87,30){\fs{12}{12}{\gtfamily{\mdseries 岩波書店}}}  
 \put(87,16){\fs{8.2}{12}{\gtfamily{\mdseries 定価(本体{\fontspec{Inter-Medium}3400}円＋税)}}}  
 \end{picture}  

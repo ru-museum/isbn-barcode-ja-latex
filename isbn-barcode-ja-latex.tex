@@ -32,6 +32,8 @@
 % \usepackage[haranoaji,deluxe,nfssonly,jis2004]{luatexja-preset}
 \usepackage[haranoaji,deluxe]{luatexja-preset}
 
+\usepackage{luatexja-otf} % UNICODE
+
 % MACRO
 \def\ocrb#1{\fontspec{ocrb7} {#1}}
 \def\ocrbsmall#1{\fontspec{ocrb7} \fontsize{7}{7}{#1}\selectfont }
@@ -44,6 +46,10 @@
 \newfontfamily\roboto{roboto}
 % \newfontfamily\fRMono{RobotoMono-Regular}
 \newfontfamily\fRMono{RobotoMono-Light}
+
+% \newfontfamily\fOCRBRegular{ocrb-regular}
+\newfontfamily\fOCRBRegular{OCRB-Regular}
+
 
 \def\bs{\textbackslash}
 
@@ -302,23 +308,66 @@ ocr-b-outline
 \end{itemize}
 \vspace{-6mm}
 
-\subsection{「￥」マーク文字について}\vspace{-2mm}
-\begin{itemize}
-  \item 「{\gtfamily\bfseries￥}」マークは CTAN 版には収録されていませんので、{\colH{800000}円記号（￥）を太字化}することで補完しています。
-  \item 「{\gtfamily\bfseries￥}」マークを収録している OCRB.TTF フォントには各社提供のものがあります（MS 社 Windows OS 付属等）が、利用に際しては場合により著作権問題が生じることが有りますので注意して下さい。
-\end{itemize}
 
+
+\subsection{「{\jfontspec{OCRB-Regular} \UTF{00A5}}(￥)」円マーク文字について}\vspace{-2mm}
+
+\begin{itemize}
+
+  \item CTAN版フォントには「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マークは 収録されていません。\\使用に際しては{\colH{800000}円記号（￥）を太字化}することで補完出来ます。
+\vspace{-2mm}
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm]{./images/ocrb-ttf01.png}
 \caption{ocrb7(CTAN)} 
 \end{figure}
+\vspace{-6mm}
+
+  \item 「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マークを収録しているOCRBフォントには各社提供のものがあります\footnote{Microsoft社のものはWindows OSに付属しています。\\OCRB Regularはフリーフォントとして公開されていますがライセンスはAdobe社となっています。\\入手先：\href{https://freefonts.co/fonts/ocrb-regular}{OCRB Regular // Free Fonts}\\利用に際しては場合により著作権問題が生じることがありますので注意が必要です。}。
+
+\vspace{-2mm}
+  
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm]{./images/ocrb-ttf-ms2.png}
 \caption{OCRB.TTF(Microsoft Windows 付属)} 
 \end{figure}
 \vspace{-6mm}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm]{./images/ocrb-regular02.png}
+\caption{OCRB Regular.OTF( Free Fonts)} 
+\end{figure}
+
+\end{itemize}
+
+\subsubsection{「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マーク使用例}
+
+\begin{itemize}
+  \item ここでは公開されているフリーフォントOCRB-Regularを使用した例を示します。\\
+\vspace{-2mm}
+\begin{enumerate}
+  \item フォントのインストール\\
+  /usr/share/fonts/opentype/{\colH{800000}ocrb-regular}/{\colH{800000}OCRB-Regular.otf}\\
+{\colH{800000}【注】}フォント名「OCRB Regular.otf」を「OCRB{\colH{800000}-}Regular.otf」と変更します。\\
+\hspace{24pt}LuaLaTeXではフォルダへ保存されると次回から認識反映されます。
+  \item フォントの定義\\
+\bs newfontfamily\bs {\colH{800000}fOCRBRegular}\{{\colH{800000}OCRBRegular}\}\\
+  ・{\colH{800000}fOCRBRegular}は自由に設定出来ます。\\
+  ・{\colH{800000}OCRBRegular}にはハイフンは入りません。
+  \item ユニコードの使用\\
+  \bs UTF\{<unicode>\} \% \bs usepackage\{luatexja-otf\} が必要
+  \item 記述と表記\\
+記述例：\fRMono{\{\bs fontspec\{{\colH{800000}OCRB-Regular}\} \bs UTF\{{\colH{800000}00A5}\}}\\
+表記結果：{\jfontspec{OCRB-Regular} \UTF{00A5}}\\
+\end{enumerate}
+
+
+
+\end{itemize}
+
+
 
 \section{作成例テンプレート}
 \begin{itemize}
