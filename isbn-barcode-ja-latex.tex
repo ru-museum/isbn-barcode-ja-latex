@@ -364,7 +364,7 @@ ocr-b-outline
   \item ユニコードの使用\\
   \bs UTF\{<unicode>\} \% \bs usepackage\{luatexja-otf\} が必要
   \item 記述と表記\\
-記述例：\fRMono{\{\bs fontspec\{{\colH{800000}OCRB-Regular}\} \bs UTF\{{\colH{800000}00A5}\}}\\
+記述例：\fRMono{\{\bs fontspec\{{\colH{800000}OCRB-Regular}\} \bs UTF\{{\colH{800000}00A5}\}\}}\\
 表記結果：{\jfontspec{OCRB-Regular} \UTF{00A5}}\\
 \end{enumerate}
 \end{itemize}
@@ -377,8 +377,8 @@ ocr-b-outline
   \item ライブラリの呼び込み\\
   \bs usepackage\{svg\}\\
   ・画像の読込にはInkscapeのインストールが必要です。  
-  \item SVG画像 \footnote{「日本工業規格 JISX 9001-1976 光学式文字認識のための字形（英数字）」に基づいています。} \\
-      画像は./images/ocrb-yen.svgを添付しています。
+  \item SVG画像 \footnote{\href{https://kikakurui.com/x9/X9001-1976-01.html}{「日本工業規格 JISX 9001-1976 光学式文字認識のための字形（英数字）}」に準拠しています。\\kikakurui.com: https://kikakurui.com/x9/X9001-1976-01.html} \\
+      画像は添付の./images/{\colH{800000}ocrb-yen.svg}を使用します。
   \item 記述と表記\\
 記述例：\fRMono{\bs includesvg[width=12pt]\{./images/ocrb-yen.svg\}}\\
 \hspace{36pt}・widthにより大きさを設定します（in, pt, mm 他）。\\
@@ -398,7 +398,7 @@ ocr-b-outline
 \end{center}
 \end{table}
 \vspace{-4mm}
-表記例：{\fontspec{ocrb7}C0197 \includesvg[width=5.4pt]{./images/ocrb-yen.svg}\hspace{1.2pt}940E}  
+表記例：{\fontspec{ocrb7}C0197 \includesvg[width=5.4pt]{./images/ocrb-yen.svg}\hspace{1.pt}940E}  
 
 \end{enumerate}
 \end{itemize}
