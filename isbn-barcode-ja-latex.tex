@@ -55,6 +55,15 @@
 
 % \newfontfamily\fOCRBRegular{ocrb-regular}
 \newfontfamily\fOCRBRegular{OCRB-Regular}
+   % UprightFont   = Calibri_Light.ttf,
+   % ItalicFont    = Calibri_Light_Italic.ttf
+\newfontfamily\fOCRBFree{OCRB-Free}
+% \newfontfamily\fOCRBTestA{OCRB-TestA}
+% \newfontfamily\fOCRBTestB{OCRB-TestB}
+% \newfontfamily\fOCRBTestC{OCRB-TestC}
+% \newfontfamily\fOCRBTestD{OCRB-TestD}
+% \newfontfamily\fOCRBTestE{OCRB-TestE}
+
 
 \def\bs{\textbackslash}
 
@@ -347,29 +356,51 @@ ocr-b-outline
 
 \end{itemize}
 
-\subsubsection{「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マーク使用例１：フォント}
+\subsubsection{「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マーク使用例１：フォントA}
 
 \begin{itemize}
   \item ここでは公開されているフリーフォントOCRB-Regularを使用した例を示します。\\
 \vspace{-2mm}
 \begin{enumerate}
   \item フォントのインストール\\
-  /usr/share/fonts/opentype/{\colH{800000}ocrb-regular}/{\colH{800000}OCRB-Regular.otf}\\
+  /usr/share/texlive/texmf-dist/fonts/opentype/{\colH{800000}ocrb-regular}/{\colH{800000}OCRB-Regular.otf}\\
 {\colH{800000}【注】}フォント名「OCRB Regular.otf」を「OCRB{\colH{800000}-}Regular.otf」と変更します。\\
 \hspace{24pt}LuaLaTeXではフォルダへ保存されると次回から認識反映されます。
-  \item フォントの定義\\
-\bs newfontfamily\bs {\colH{800000}fOCRBRegular}\{{\colH{800000}OCRBRegular}\}\\
-  ・{\colH{800000}fOCRBRegular}は自由に設定出来ます。\\
-  ・{\colH{800000}OCRBRegular}にはハイフンは入りません。
+  \item フォントの指定\\
+\bs {\colH{800000}jfontspec}\{OCRB-Regular\} \% fontspecではエラーとなります。
   \item ユニコードの使用\\
   \bs UTF\{<unicode>\} \% \bs usepackage\{luatexja-otf\} が必要
   \item 記述と表記\\
-記述例：\fRMono{\{\bs fontspec\{{\colH{800000}OCRB-Regular}\} \bs UTF\{{\colH{800000}00A5}\}\}}\\
-表記結果：{\jfontspec{OCRB-Regular} \UTF{00A5}}\\
+記述例：\fRMono{\{\bs jfontspec\{{\colH{800000}OCRB-Regular}\} \bs UTF\{{\colH{800000}00A5}\}\}}\\
+表記例：{\fontspec{ocrb7}C0197 {\jfontspec{OCRB-Regular} \UTF{00A5}}\hspace{-2pt}940E}\\
 \end{enumerate}
 \end{itemize}
 
-\subsubsection{「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マーク使用例２：SVG}
+\subsubsection{「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マーク使用例２：フォントB}
+
+\begin{itemize}
+  \item {\colH{800000}著作権問題}を忌避する為、自作OCRBフォント(ttf)を使用した例を示します。\\
+\vspace{-2mm}
+\begin{enumerate}
+  \item フォントのインストール\\
+  添付のフォント（fonts/OCRB-Free.ttf）を以下のフォルダを作成し保存します。\\
+/usr/share/texlive/texmf-dist/fonts/truetype/{\colH{800000}ocrb}/{\colH{800000}OCRB-Free.ttf}\\
+{\colH{800000}【注】}OCRB-Freeフォントは開発中ですので「{\jfontspec{OCRB-Free} \UTF{00A5}}」マークのみを収録しています。\\
+\hspace{24pt}LuaLaTeXではフォルダへ保存されると次回から認識反映されます。
+  \item フォントの指定\\
+\bs {\colH{800000}jfontspec}\{OCRB-Free\} \% fontspecではエラーとなります。
+  \item ユニコードの使用\\
+  \bs UTF\{<unicode>\} \% \bs usepackage\{luatexja-otf\} が必要
+  \item 記述と表記\\
+記述例：\fRMono{\{\bs jfontspec\{{\colH{800000}OCRB-Free}\} \bs UTF\{{\colH{800000}00A5}\}\}}\\
+\hspace{37pt}\fRMono{\{\bs fontspec\{ocrb7\}C0197 \{\bs jfontspec\{{\colH{800000}OCRB-Free}\} \bs UTF\{{\colH{800000}00A5}\}\}940E\}}\vspace{4mm}\\
+表記例：10pt：{\fs{10}{20}{\fontspec{ocrb7}C0197 {\jfontspec{OCRB-Free} \UTF{00A5}}940E}}\\
+\hspace{37pt}12pt：{\fs{12}{20}{\fontspec{ocrb7}C0197 {\jfontspec{OCRB-Free} \UTF{00A5}}940E}}\vspace{-2mm}\\
+\hspace{37pt}20pt：{\fs{20}{20}{\fontspec{ocrb7}C0197 {\jfontspec{OCRB-Free} \UTF{00A5}}940E}}  
+\end{enumerate}
+\end{itemize}
+
+\subsubsection{「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マーク使用例３：SVG}
 \begin{itemize}
   \item ここでは{\colH{800000}著作権問題を考慮した場合}を想定しSVG画像を使用した例を示します。\\
 \vspace{-2mm}
@@ -398,7 +429,7 @@ ocr-b-outline
 \end{center}
 \end{table}
 \vspace{-4mm}
-表記例：{\fontspec{ocrb7}C0197 \includesvg[width=5.4pt]{./images/ocrb-yen.svg}\hspace{1.pt}940E}  
+表記例：{\fontspec{ocrb7}C0197 \includesvg[width=5.4pt]{./images/ocrb-yen.svg}\hspace{1pt}940E}  
 
 \end{enumerate}
 \end{itemize}
