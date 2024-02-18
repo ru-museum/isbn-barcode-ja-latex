@@ -38,9 +38,15 @@
 \def\ocrb#1{\fontspec{ocrb7} {#1}}
 \def\ocrbsmall#1{\fontspec{ocrb7} \fontsize{7}{7}{#1}\selectfont }
 
+
+
 \usepackage{framed}
 
 % DEFINE
+
+% フォントサイズのマクロ定義が可能です。
+\def\fsOCRB#1{\fontsize{#1pt}{14pt}\selectfont}
+
 \def\fs#1#2{\fontsize{#1}{#2}\selectfont }
 \def\bf#1{\textbf{#1}}
 \newfontfamily\roboto{roboto}
@@ -49,7 +55,6 @@
 
 % \newfontfamily\fOCRBRegular{ocrb-regular}
 \newfontfamily\fOCRBRegular{OCRB-Regular}
-
 
 \def\bs{\textbackslash}
 
@@ -314,8 +319,8 @@ ocr-b-outline
 
 \begin{itemize}
 
-  \item CTAN版フォントには「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マークは 収録されていません。\\使用に際しては{\colH{800000}円記号（￥）を太字化}することで補完出来ます。
-\vspace{-2mm}
+  \item CTAN版フォントには「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マークは 収録されていません。\\使用に際しては{\colH{800000}円記号（￥）を太字化}することで補完出来ます。\\
+\vspace{-6mm}
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm]{./images/ocrb-ttf01.png}
@@ -342,7 +347,7 @@ ocr-b-outline
 
 \end{itemize}
 
-\subsubsection{「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マーク使用例}
+\subsubsection{「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マーク使用例１：フォント}
 
 \begin{itemize}
   \item ここでは公開されているフリーフォントOCRB-Regularを使用した例を示します。\\
@@ -362,12 +367,39 @@ ocr-b-outline
 記述例：\fRMono{\{\bs fontspec\{{\colH{800000}OCRB-Regular}\} \bs UTF\{{\colH{800000}00A5}\}}\\
 表記結果：{\jfontspec{OCRB-Regular} \UTF{00A5}}\\
 \end{enumerate}
-
-
-
 \end{itemize}
 
+\subsubsection{「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マーク使用例２：SVG}
+\begin{itemize}
+  \item ここでは{\colH{800000}著作権問題を考慮した場合}を想定しSVG画像を使用した例を示します。\\
+\vspace{-2mm}
+\begin{enumerate}
+  \item ライブラリの呼び込み\\
+  \bs usepackage\{svg\}\\
+  ・画像の読込にはInkscapeのインストールが必要です。  
+  \item SVG画像 \footnote{「日本工業規格 JISX 9001-1976 光学式文字認識のための字形（英数字）」に基づいています。} \\
+      画像は./images/ocrb-yen.svgを添付しています。
+  \item 記述と表記\\
+記述例：\fRMono{\bs includesvg[width=12pt]\{./images/ocrb-yen.svg\}}\\
+\hspace{36pt}・widthにより大きさを設定します（in, pt, mm 他）。\\
 
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{lllllll}
+\hspace{-6pt}\bf{設定値}： & \bf{2mm} & \bf{4mm} & \bf{12pt} & \bf{0.2in} & \bf{6mm}\\
+ & \hspace{10pt}\includesvg[width=2mm]{./images/ocrb-yen.svg} & 
+\hspace{8pt}\includesvg[width=4mm]{./images/ocrb-yen.svg} & 
+\hspace{6pt}\includesvg[width=12pt]{./images/ocrb-yen.svg} & 
+\hspace{6pt}\includesvg[width=0.2in]{./images/ocrb-yen.svg} & 
+\hspace{4pt}\includesvg[width=6mm]{./images/ocrb-yen.svg}\\
+\hline
+\end{tabular}
+\caption{表記例}
+\end{center}
+\end{table}
+
+\end{enumerate}
+\end{itemize}
 
 \section{作成例テンプレート}
 \begin{itemize}
