@@ -254,6 +254,44 @@ n > 0 & n < 0 &  n > 0 & n < 0\\[5pt]
 \vspace{40mm}
 
 
+\section{定期刊行物コード（雑誌）}
+
+\begin{itemize}
+  \item JANコードに準拠する13桁（左）は{\colH{800000}ean13}、価格を表現する５桁のアドオンコード（右）は{\colH{800000}ean5}によりエンコードされています。
+  \item シンボルの高さは基本12mmですが、製本時の「断ち落とし」に備え15mm以上が必要です。\\
+  通常多くは15mmで表示されています（図３は裁断された例です）。
+  \item 各部品の位置調整は {\gtfamily{\mdseries ３ 作成手順}}を参照して下さい。
+\end{itemize}
+\vspace{-6mm}
+
+% 定期刊行物コード
+\begin{picture}(0,0)(76,120)
+\put(92,100){\gtfamily{\mdseries 雑誌} {\fontspec{roboto}06615—08}}  
+\end{picture}  
+
+\begin{pspicture}(-34mm,18mm)
+\psbarcode{4910066150853}{height=0.61 width=1.24}{ean13}
+\end{pspicture}
+% SPACE: 2.31mm
+\begin{pspicture}(-32.6mm,18mm)
+\psbarcode{00093}{height=0.61 width=0.66}{ean5}
+\end{pspicture}
+
+\begin{picture}(0,0)(-157,48)
+\put(92,100){\fontspec{ocrb7}4910066150853}  
+\end{picture}  
+\begin{picture}(0,0)(-211.4,59)
+\put(92,100){\fontspec{ocrb7}00093}  
+\end{picture}  
+\vspace{-6mm}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=11.6cm,angle=0]{./images/barcode-magazine0001.png}
+\caption{定期刊行物コード（雑誌）表示例} 
+\end{figure}
+\vspace{-10mm}
+
 \section{FONT-WEIGHT の調整}
 
 \subsection{luatexja-preset で deluxe を設定}　
@@ -377,12 +415,13 @@ ocr-b-outline
 表記例：{\fontspec{ocrb7}C0197 {\jfontspec{OCRB-Regular} \UTF{00A5}}\hspace{-2pt}940E}\\
 \end{enumerate}
 \end{itemize}
+\vspace{-10mm}
 
 \subsubsection{「{\jfontspec{OCRB-Regular} \UTF{00A5}}」マーク使用例２：フォントB}
 
 \begin{itemize}
   \item {\colH{800000}著作権問題}を忌避する為、自作OCRBフォント(ttf)を使用した例を示します。\\
-\vspace{-2mm}
+    OCRB文字セットは{\colH{388ED9}STANDARD ECMA-11}\footnote{\href{https://ecma-international.org/wp-content/uploads/ECMA-11\_3rd\_edition\_march\_1976.pdf}{STANDARD ECMA-11 for The Alphanumeric character set OCR-B for optical recognition. 3rd Edition 1976}\\https://ecma-international.org/wp-content/uploads/ECMA-11\_3rd\_edition\_march\_1976.pdf\\参考：「\href{https://kikakurui.com/x9/X9001-1976-01.html}{日本工業規格 JISX 9001-1976 光学式文字認識のための字形（英数字）}」\\\hspace{24pt}kikakurui.com: https://kikakurui.com/x9/X9001-1976-01.html}に準拠しています。
 \begin{enumerate}
   \item フォントのインストール\\
   添付のフォント（fonts/OCRB-Free.ttf）を以下のフォルダを作成し保存します。\\
@@ -395,7 +434,7 @@ ocr-b-outline
   \bs UTF\{<unicode>\} \% \bs usepackage\{luatexja-otf\} が必要
   \item 記述と表記\\
 記述例：\fRMono{\{\bs jfontspec\{{\colH{800000}OCRB-Free}\} \bs UTF\{{\colH{800000}00A5}\}\}}\\
-\hspace{37pt}\fRMono{\{\bs fontspec\{ocrb7\}C0197 \{\bs jfontspec\{{\colH{800000}OCRB-Free}\} \bs UTF\{{\colH{800000}00A5}\}\}940E\}}\vspace{4mm}\\
+\hspace{37pt}\fRMono{\{\bs fontspec\{ocrb7\}C0197 \{\bs jfontspec\{{\colH{800000}OCRB-Free}\} \bs UTF\{{\colH{800000}00A5}\}\}940E\}}\\
 表記例：10pt：{\fs{10}{20}{\fontspec{ocrb7}C0197 {\jfontspec{OCRB-Free} \UTF{00A5}}940E}}\\
 \hspace{37pt}12pt：{\fs{12}{20}{\fontspec{ocrb7}C0197 {\jfontspec{OCRB-Free} \UTF{00A5}}940E}}\vspace{-2mm}\\
 \hspace{37pt}20pt：{\fs{20}{20}{\fontspec{ocrb7}C0197 {\jfontspec{OCRB-Free} \UTF{00A5}}940E}}  
@@ -410,8 +449,9 @@ ocr-b-outline
   \item ライブラリの呼び込み\\
   \bs usepackage\{svg\}\\
   ・画像の読込にはInkscapeのインストールが必要です。  
-  \item SVG画像 \footnote{\href{https://kikakurui.com/x9/X9001-1976-01.html}{「日本工業規格 JISX 9001-1976 光学式文字認識のための字形（英数字）}」に準拠しています。\\kikakurui.com: https://kikakurui.com/x9/X9001-1976-01.html} \\
-      画像は添付の./images/{\colH{800000}ocrb-yen.svg}を使用します。
+  \item SVG画像 \\
+      画像は添付の./images/{\colH{800000}ocrb-yen.svg}を使用します。\\
+     ・OCRB文字セットは\href{https://ecma-international.org/wp-content/uploads/ECMA-11\_3rd\_edition\_march\_1976.pdf}{STANDARD ECMA-11}(\roboto 脚注*10参照)に準拠しています。      
   \item 記述と表記\\
 記述例：\fRMono{\bs includesvg[width=12pt]\{./images/ocrb-yen.svg\}}\\
 \hspace{36pt}・widthにより大きさを設定します（in, pt, mm 他）。\\
