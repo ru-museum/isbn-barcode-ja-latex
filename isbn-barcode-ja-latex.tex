@@ -37,8 +37,7 @@
 % MACRO
 \def\ocrb#1{\fontspec{ocrb7} {#1}}
 \def\ocrbsmall#1{\fontspec{ocrb7} \fontsize{7}{7}{#1}\selectfont }
-
-
+\def\fYen{\jfontspec{OCRA} \UTF{00A5}}
 
 \usepackage{framed}
 
@@ -318,17 +317,22 @@ n > 0 & n < 0 &  n > 0 & n < 0\\[5pt]
 
 \section{OCRB フォントの使用}
 \begin{itemize}
-  \item \href{https://imagers.co.jp/contents/1537/}{OCRB フォントとは}ISOで規格化された国際規格となっています。
-  \item \href{https://ctan.org/pkg/ocr-b-outline}{ocr-b-outline – OCR-B fonts in Type 1 and OpenType}(CTAN)\\
-{\fs{9}{9} ※ 従来の .mf フォントは LuaLaTeX では使用出来ませんので OTF を使用します。}
-  \item \href{Index of /pub/tex-archive/fonts/ocr-b-outline/opentype}{ocr-b-outline} // Comprehensive TeX Archive Network(理研)
+  \item OCRBフォント\footnote{パスポート、免許証番号、最近ではマイナンバーカードにも採用されています。}はバーコードの文字表記に使用されるISO国際規格となっています。
+  \item Tex Liveでは、{\colH{800000} texlive-fonts-extra}パッケージに{\colH{800000} ocr-b-outline}として同梱されています。
+%  \item 「{\;\fYen}」マークを使用する場合は、{\bfseries 6.3「{\;\fYen}」円マーク文字について}を参照して下さい。
+
 \end{itemize}
+
+
 \vspace{-6mm}
 
 \subsection{インストール方法}
 \begin{itemize}
-  \item リンク先よりダウンロード・解凍し以下のフォルダに配置します。\\
-/usr/share/texlive/texmf-dist/fonts/opentype/public/\textbf{\colH{800000}ocr-b-outline}\vspace{-2mm}\\
+  \item インストールされていない場合は、以下からダウンロードして配置して下さい。
+  \item[] \href{https://ctan.org/pkg/ocr-b-outline}{ocr-b-outline – OCR-B fonts in Type 1 and OpenType}(CTAN)\\
+https://ctan.org/pkg/ocr-b-outline\\
+{\fRMono /usr/share/texlive/texmf-dist/fonts/opentype/public/ocr-b-outline/\\opentype/ocrb[5-10].otf
+} \\
 {\fs{9}{6}
 \begin{verbatim}
 ocr-b-outline
@@ -349,77 +353,73 @@ ocr-b-outline
 \subsection{ISBN番号表示例}\vspace{-2mm}
 \begin{itemize}
   \item[]
-\fRMono{\{{\colH{800000}\bs ocrb} ISBN978-4-06-278761-1\}}\\
-\quad{\ocrb ISBN978-4-06-278761-1}\\
-\fRMono{\{{\colH{800000}\bs ocrbsmall}\bs quad ISBN978-4-06-278761-1\}}\\
-{\ocrbsmall\quad ISBN978-4-06-278761-1}\vspace{-6mm}\\
-
 \fRMono{\{\bs fontspec\{{\colH{800000}ocrb7}\}ISBN978-4-06-278761-1\}}\\
 \quad{\fontspec{ocrb7}ISBN978-4-06-278761-1}\\
 \fRMono{\{\bs fontspec\{{\colH{800000}ocrb9}\}ISBN4-00-326184-4 C0197 \bs gtfamily\{\bs bfseries￥\}940E\}}\\
-\quad{\fontspec{ocrb9}ISBN4-00-326184-4 C0197 \gtfamily{\bfseries￥}940E}\\
+\quad{\fontspec{ocrb9}ISBN4-00-326184-4 C0197 \gtfamily{\bfseries￥}940E} \% ￥で代替えの場合\\
+\fRMono{\{\bs fontspec\{{\colH{800000}ocrb9}\}ISBN4-00-326184-4 C0197 \{\bs jfontspec\{OCRA\} \bs UTF\{00A5\}\}940E\}}\\
+\quad{\fontspec{ocrb9}ISBN4-00-326184-4 C0197 {\jfontspec{OCRA} \UTF{00A5}}940E} \% ￥をOCRAフォント\footnote{参照：{\roboto\bfseries 6.3.1「 ¥ 」マーク使用例1:フォント A}}使用 \\
+
 \end{itemize}
 \vspace{-6mm}
 
-
-
-%\subsection{「{\jfontspec{OCRB-Free} \UTF{00A5}}(￥)」円マーク文字について}\vspace{-2mm}
-\subsection{「{\jfontspec{OCRB-Free} \UTF{00A5}}(￥)」円マーク文字について}\vspace{-2mm}
+\subsection{「{\;\fYen}(￥)」円マーク文字について}\vspace{-2mm}
 
 \begin{itemize}
 
-  \item CTAN版フォントには「{\jfontspec{OCRB-Free} \UTF{00A5}}」マークは 収録されていません。\\使用に際しては{\colH{800000}円記号（￥）を太字化}することで補完出来ます。\\
-その他の方法は、\bf{\roboto 5.3.1〜3}の\bf{「{\jfontspec{OCRB-Free} \UTF{00A5}}」マーク使用例}を参照して下さい。
-  
-% \vspace{-2mm}
+ \item OCRBフォントには「{{\;\fYen}}」マークを収録しているものとしていないものとがあります。
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm]{./images/ocrb-ttf01.png}
-\caption{ocrb7(CTAN)} 
+\caption{ocrb7(CTAN)：未収録} 
 \end{figure}
-% \vspace{-6mm}
 
-  \item 「{\jfontspec{OCRB-Free} \UTF{00A5}}」マークを収録しているOCRBフォントには各社提供のものがあります\footnote{Microsoft社のものはWindows OSに付属しています。\\OCRB Regularはフリーフォントとして公開されていますがライセンスはAdobe社となっています。\\入手先：\href{https://freefonts.co/fonts/OCRB-Free}{OCRB Regular // Free Fonts}\\利用に際しては場合により著作権問題が生じることがありますので注意が必要です。}。
+  \item[] 収録しているOCRBフォントには各社提供のものが幾つかあります\footnote{Microsoft社のものはWindows OSに付属しています。\\OCRB Regularはフリーフォントとして公開されていますがライセンスはAdobe社となっています。\\入手先：\href{https://freefonts.co/fonts/OCRB-Free}{OCRB Regular // Free Fonts}\\利用に際しては場合により著作権問題が生じることがありますので注意が必要です。}。
 
-\vspace{-2mm}
-  
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm]{./images/ocrb-ttf-ms2.png}
 \caption{OCRB.TTF(Microsoft Windows 付属)} 
 \end{figure}
-\vspace{-6mm}
 
+  \item[] 類似のOCRAフォントで収録しているものがあります。
 \begin{figure}[H]
 \centering
-\includegraphics[width=14cm]{./images/OCRB-Regular02.png}
-\caption{OCRB Regular.OTF( Free Fonts)} 
+\includegraphics[width=14cm]{./images/ocrA-fonts2.png}
+\caption{OCRA.OTF(作りましょうプロジェクト)} 
 \end{figure}
-
 \end{itemize}
 
-\subsubsection{「{\jfontspec{OCRB-Free} \UTF{00A5}}」マーク使用例１：フォントA}
+\vspace{-4mm}
+
+\subsubsection{「{\;\fYen}」マーク使用例１：フォントA}
 
 \begin{itemize}
-  \item ここでは公開されているフリーフォントOCRB-Freeを使用した例を示します。\\
-  \href{https://freefonts.co/fonts/OCRB-Free}{OCRB Regular // Free Fonts}\quad https://freefonts.co/fonts/OCRB-Free
+  \item ここでは「作りましょうプロジェクト」\footnote{\href{https://tsukurimashou.org/files/ocr-0.3.1.zip}{ocr-0.3.1.zip} // 作りましょうプロジェクト\quad https://tsukurimashou.org/files/ocr-0.3.1.zip\\このパッケージにはOCR-Bフォントのバリアントがあり同様に使用出来ます（OCRB.otf、OCRBE.otf、OCRBF.otf、OCRBL.otf、OCRBS.otf、OCRBX.otf）。同名のTTFフォントも使用可能です。}が公開しているOCRフォントを使用した例を示します。\\
+  特に同梱のOCR-A\footnote{OCR-AはOCR-Bと並び光学文字認識用フォントで、主に銀行小切手やパスポート、郵便物などに使用されます。}に{\;\fYen}マークが収録されておりそれを利用します。\\
+  同梱されているOCR-Bフォントは{\;\fYen}マーク以外にも使用出来ます。
 \begin{enumerate}
   \item フォントのインストール\\
-  /usr/share/texlive/texmf-dist/fonts/opentype/{\colH{800000}OCRB-Free}/{\colH{800000}OCRB-Free.otf}\\
-{\colH{800000}【注】}フォント名「OCRB Regular.otf」を「OCRB{\colH{800000}-}Regular.otf」と変更します。\\
-\hspace{24pt}LuaLaTeXではフォルダへ保存されると次回から認識反映されます。
+  解凍したフォルダ内のOCRA.otfフォントを以下に置きます（不要なファイルは全て削除可）。\\
+  /usr/share/texlive/texmf-dist/fonts/opentype/public/{\colH{800000}ocra}/{\colH{800000}OCRA.otf}\\
+OCR-Bフォントを使用する場合は別フォルダを作りそこへ置きます。\\
+  /usr/share/texlive/texmf-dist/fonts/opentype/public/{\colH{800000}ocrb}/{\colH{800000}OCRB.otf}\\
+  {\colH{800000}※}LuaLaTeXではフォルダへ保存されると次回から認識反映されます。
   \item フォントの指定\\
-\bs {\colH{800000}jfontspec}\{OCRB-Free\} \% fontspecではエラーとなります。
+\bs {\colH{800000}jfontspec}\{OCRA\} \% fontspecではエラーとなります。\\
+{\colH{800000}※}jfontspecには\bs usepackage\{luatexja-preset\}が必要です。
   \item ユニコードの使用\\
-  \bs UTF\{<unicode>\} \% \bs usepackage\{luatexja-otf\} が必要
+  \bs UTF\{<unicode>\} \% \bs usepackage\{luatexja-otf\} が必要です。
   \item 記述と表記\\
-記述例：\fRMono{\{\bs jfontspec\{{\colH{800000}OCRB-Free}\} \bs UTF\{{\colH{800000}00A5}\}\}}\\
-表記例：{\fontspec{ocrb7}C0197 {\jfontspec{OCRB-Free} \UTF{00A5}}\hspace{-2pt}940E}\\
+記述例：\fRMono{\{\bs fontspec\{ocrb7\}C0197 \{\bs jfontspec\{{\colH{800000}OCRA}\} \bs UTF\{{\colH{800000}00A5}\}\}940E\}}\\
+表記例：{\fontspec{ocrb7}C0197 \fYen\hspace{-2pt}940E}\\
+
+
 \end{enumerate}
 \end{itemize}
 \vspace{-10mm}
 
-\subsubsection{「{\jfontspec{OCRB-Free} \UTF{00A5}}」マーク使用例２：フォントB}
+\subsubsection{「{\;\fYen}」マーク使用例２：フォントB}
 
 \begin{itemize}
   \item {\colH{800000}著作権問題}を忌避する為、自作OCRBフォント(ttf)を使用した例を示します。\\
@@ -428,7 +428,7 @@ ocr-b-outline
   \item フォントのインストール\\
   添付のフォント（fonts/OCRB-Free.ttf）を以下のフォルダを作成し保存します。\\
 /usr/share/texlive/texmf-dist/fonts/truetype/{\colH{800000}ocrb}/{\colH{800000}OCRB-Free.ttf}\\
-{\colH{800000}【注】}OCRB-Freeフォントは開発中ですので「{\jfontspec{OCRB-Free} \UTF{00A5}}」マークのみを収録しています。\\
+{\colH{800000}【注】}OCRB-Freeフォントは「{{\;\fYen}}」マークのみを収録しています。\\
 \hspace{24pt}LuaLaTeXではフォルダへ保存されると次回から認識反映されます。
   \item フォントの指定\\
 \bs {\colH{800000}jfontspec}\{OCRB-Free\} \% fontspecではエラーとなります。
@@ -437,13 +437,13 @@ ocr-b-outline
   \item 記述と表記\\
 記述例：\fRMono{\{\bs jfontspec\{{\colH{800000}OCRB-Free}\} \bs UTF\{{\colH{800000}00A5}\}\}}\\
 \hspace{37pt}\fRMono{\{\bs fontspec\{ocrb7\}C0197 \{\bs jfontspec\{{\colH{800000}OCRB-Free}\} \bs UTF\{{\colH{800000}00A5}\}\}940E\}}\\
-表記例：10pt：{\fs{10}{20}{\fontspec{ocrb7}C0197 {\jfontspec{OCRB-Free} \UTF{00A5}}940E}}\\
-\hspace{37pt}12pt：{\fs{12}{20}{\fontspec{ocrb7}C0197 {\jfontspec{OCRB-Free} \UTF{00A5}}940E}}\vspace{-2mm}\\
-\hspace{37pt}20pt：{\fs{20}{20}{\fontspec{ocrb7}C0197 {\jfontspec{OCRB-Free} \UTF{00A5}}940E}}  
+表記例：10pt：{\fs{10}{20}{\fontspec{ocrb7}C0197 {{\;\fYen}}940E}}\\
+\hspace{37pt}12pt：{\fs{12}{20}{\fontspec{ocrb7}C0197 {{\;\fYen}}940E}}\vspace{-2mm}\\
+\hspace{37pt}20pt：{\fs{20}{20}{\fontspec{ocrb7}C0197 {{\;\fYen}}940E}}  
 \end{enumerate}
 \end{itemize}
 
-\subsubsection{「{\jfontspec{OCRB-Free} \UTF{00A5}}」マーク使用例３：SVG}
+\subsubsection{「{\;\fYen}」マーク使用例３：SVG}
 \begin{itemize}
   \item ここでは{\colH{800000}著作権問題を考慮した場合}を想定しSVG画像を使用した例を示します。\\
 \vspace{-2mm}
@@ -487,4 +487,3 @@ ocr-b-outline
 
 
 \end{document}
-
