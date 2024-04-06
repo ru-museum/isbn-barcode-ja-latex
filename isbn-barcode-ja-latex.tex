@@ -18,7 +18,6 @@
 % HTML(#800000)色定義
 \def\colH#1{\color[HTML]{#1}}
 
-
 % 画像挿入
 \usepackage{float}
 \usepackage{graphicx}
@@ -31,7 +30,6 @@
 % FONT-WEIGHT 調整の指定
 % \usepackage[haranoaji,deluxe,nfssonly,jis2004]{luatexja-preset}
 \usepackage[haranoaji,deluxe]{luatexja-preset}
-
 \usepackage{luatexja-otf} % UNICODE
 
 % MACRO
@@ -42,29 +40,16 @@
 \usepackage{framed}
 
 % DEFINE
-
 % フォントサイズのマクロ定義が可能です。
 \def\fsOCRB#1{\fontsize{#1pt}{14pt}\selectfont}
 
 \def\fs#1#2{\fontsize{#1}{#2}\selectfont }
 \def\bf#1{\textbf{#1}}
-\newfontfamily\roboto{roboto}
-% \newfontfamily\fRMono{RobotoMono-Regular}
-\newfontfamily\fRMono{RobotoMono-Light}
-
-% \newfontfamily\fOCRBRegular{OCRB-Free}
-\newfontfamily\fOCRBRegular{OCRB-Regular}
-   % UprightFont   = Calibri_Light.ttf,
-   % ItalicFont    = Calibri_Light_Italic.ttf
-\newfontfamily\fOCRBFree{OCRB-Free}
-% \newfontfamily\fOCRBTestA{OCRB-TestA}
-% \newfontfamily\fOCRBTestB{OCRB-TestB}
-% \newfontfamily\fOCRBTestC{OCRB-TestC}
-% \newfontfamily\fOCRBTestD{OCRB-TestD}
-% \newfontfamily\fOCRBTestE{OCRB-TestE}
-
-
 \def\bs{\textbackslash}
+\newfontfamily\roboto{roboto}
+\newfontfamily\fRMono{RobotoMono-Light}
+\newfontfamily\fOCRBRegular{OCRB-Regular}
+\newfontfamily\fOCRBFree{OCRB-Free}
 
 \title{\Huge 日本語書籍用ISBNバーコードの作成\\ \huge Template with Lua\LaTeX{}\vspace{10mm}\\ \Large\lbrack\ pst-barcode\ \rbrack\vspace{100mm}}
 
@@ -158,7 +143,7 @@ LuaLatex
 
 \subsection{フォントの指定}
 \begin{itemize}
-  \item ISBNコード表記では特別な{\colH{800000}OCRB フォント}\footnote{\roboto{5 OCRB \textbf{フォントの使用}}を参照。}が使われます。\\
+  \item ISBNコード表記では特別な{\colH{800000}OCRB フォント}\footnote{\roboto{6 OCRB \textbf{フォントの使用}}を参照。}が使われます。\\
 \textbf{記述例：}\fRMono{\{\bs fontspec\{ocrb7\}9784003261842\}}\\
 \textbf{表示例：}\hspace{2mm}{\fontspec{ocrb7}9784003261842}\\
 \end{itemize}
@@ -253,10 +238,10 @@ n > 0 & n < 0 &  n > 0 & n < 0\\[5pt]
 \vspace{36mm}
 
 
-\section{定期刊行物コード（雑誌）\footnote{\href{http://www.torikyo.jp/topics/m-code/20141017.pdf}{定期刊行物コード（雑誌） 登録とソースマーキングのガイド} // 日本出版取次協会}}
+\section{定期刊行物コード（雑誌）}
 
 \begin{itemize}
-  \item JANコードに準拠する13桁（左）は{\colH{800000}ean13}、価格を表現する５桁のアドオンコード（右）は{\colH{800000}ean5}によりエンコードされています。
+  \item 定期刊行物コード（雑誌）\footnote{\href{http://www.torikyo.jp/topics/m-code/20141017.pdf}{定期刊行物コード（雑誌） 登録とソースマーキングのガイド} // 日本出版取次協会}は、空白域を境にJANコードに準拠する13桁（左）は{\colH{800000}ean13}、価格を表現する５桁のアドオンコード（右）は{\colH{800000}ean5}によりエンコードされています。
   \item シンボルの高さは基本12mmですが、製本時の「断ち落とし」に備え15mm以上が必要です。\\
   通常多くは15mmで表示されています（図３は裁断された例です）。
   \item 各部品の位置調整は {\gtfamily{\mdseries ３ 作成手順}}を参照して下さい。
@@ -358,7 +343,7 @@ ocr-b-outline
 \fRMono{\{\bs fontspec\{{\colH{800000}ocrb9}\}ISBN4-00-326184-4 C0197 \bs gtfamily\{\bs bfseries￥\}940E\}}\\
 \quad{\fontspec{ocrb9}ISBN4-00-326184-4 C0197 \gtfamily{\bfseries￥}940E} \% ￥で代替えの場合\\
 \fRMono{\{\bs fontspec\{{\colH{800000}ocrb9}\}ISBN4-00-326184-4 C0197 \{\bs jfontspec\{OCRA\} \bs UTF\{00A5\}\}940E\}}\\
-\quad{\fontspec{ocrb9}ISBN4-00-326184-4 C0197 {\jfontspec{OCRA} \UTF{00A5}}940E} \% ￥をOCRAフォント\footnote{参照：{\roboto\bfseries 6.3.1「 ¥ 」マーク使用例1:フォント A}}使用 \\
+\quad{\fontspec{ocrb9}ISBN4-00-326184-4 C0197 {\jfontspec{OCRA} \UTF{00A5}}940E} \% ￥をOCRAフォント\footnote{参照：{\roboto\bfseries 6.3.1「{\;\fYen}」マーク使用例1:フォント A}}使用 \\
 
 \end{itemize}
 \vspace{-6mm}
@@ -453,7 +438,7 @@ OCR-Bフォントを使用する場合は別フォルダを作りそこへ置き
   ・画像の読込にはInkscapeのインストールが必要です。  
   \item SVG画像 \\
       画像は添付の./images/{\colH{800000}ocrb-yen.svg}を使用します。\\
-     ・OCRB文字セットは\href{https://ecma-international.org/wp-content/uploads/ECMA-11\_3rd\_edition\_march\_1976.pdf}{STANDARD ECMA-11}(\roboto 脚注*10参照)に準拠しています。      
+     ・OCRB文字セットは\href{https://ecma-international.org/wp-content/uploads/ECMA-11\_3rd\_edition\_march\_1976.pdf}{STANDARD ECMA-11}(\roboto 脚注*15参照)に準拠しています。      
   \item 記述と表記\\
 記述例：\fRMono{\bs includesvg[width=12pt]\{./images/ocrb-yen.svg\}}\\
 \hspace{36pt}・widthにより大きさを設定します（in, pt, mm 他）。\\
