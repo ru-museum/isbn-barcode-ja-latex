@@ -3,6 +3,11 @@ ISBN barcode Template for "Japan Book Code" with Latex.
 
 - 日本図書コード（書籍 JAN コード）に対応した ISBN バーコードを Latex により PDF 上に生成します。
 
+### [ 注意 ]  
+- 以下にも別途解説していますので参照して下さい(2025-07-24)。    
+**OCRフォント**の使用法など一部記述を変更しています（**推奨**）。  
+[jis-barcode-lualatex](https://github.com/ru-museum/jis-barcode-lualatex)　//github.com/ru-museum/jis-barcode-lualatex　
+
 # 概要
 
 ### 日本図書コード
